@@ -1,0 +1,57 @@
+server:
+  # port 설정
+  port: 10901
+
+spring:
+  # DB 설정
+  datasource:
+    url: jdbc:mariadb://39.113.92.185:10401/gongma # 개발서버
+    username: root
+    password: root
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  # JPA 설정
+  jpa:
+    open-in-view: true # Open Session in View 패턴 활성화 (default : true)
+    # 영속성을 프리젠테이션 계층까지 가져간다. 트랜잭션은 Service 계층에서 종료된다.
+    # Transaction 이 종료된 후에도 Controller 의 Session 이 close 되지 않았기 때문에,
+    # 영속 객체는 Persistence 상태를 유지할 수 있으며, 따라서 프록시 객체에 대한 Lazy Loading 을 수행할 수 있게 된다.
+    hibernate:
+      ddl-auto: create # 실행할 때마다 테이블을 모두 지우고 재생성
+    properties:
+      hibernate:
+        show_sql: false # 콘솔에 sql 표시
+        format_sql: true # 쿼리 들여쓰기 등 포맷에 맞춰 표출
+
+
+# Swagger UI 설정
+springdoc:
+  packages-to-scan: kr.co.gongma.gongma_admin_rest_api
+#  default-consumes-media-type: application/json;charset=UTF=8 # api 요청시 입력값에 대한 형식
+#  default-produces-media-type: application/json;charset=UTF=8 # api 응답시 출력값에 대한 형식
+  swagger-ui:
+    path: / # swagger 접속경로 : localhost:10901 으로 접속시 바로 연결
+    display-request-duration: true # 각 요청에 대해 걸린 시간을 표시
+    operations-sorter: method # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
+    tags-sorter: alpha # alpha: 알파벳 순 태그 정렬, method: HTTP Method 순 정렬
+  api-docs:
+    path: /api-docs
+    groups:
+      enabled: true
+  cache:
+    disabled: true
+
+# logging 설정
+logging:
+  level:
+    p6spy: info
+
+
+# p6spy 설정
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+
+
