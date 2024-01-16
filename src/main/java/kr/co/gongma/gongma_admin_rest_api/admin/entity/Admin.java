@@ -31,26 +31,6 @@ public class Admin {
     @Column(nullable = false, columnDefinition = "VARCHAR(150)")
     private String password;
 
-    @Comment("이름")
-    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
-    private String name;
-
-    @Comment("전화번호")
-    @Column(nullable = false, columnDefinition = "VARCHAR(11)")
-    private String phoneNum;
-
-    @Comment("직위")
-    @Column(nullable = false, columnDefinition = "VARCHAR(10)")
-    private String position;
-
-    @Comment("소셜 제공자")
-    @Column(columnDefinition = "VARCHAR(20)")
-    private String provider;
-
-    @Comment("소셜 제공자 ID")
-    @Column(columnDefinition = "VARCHAR(100)")
-    private String providerId;
-
     @Comment("생성일")
     @Column(nullable = false, columnDefinition = "DATETIME")
     @CreatedDate

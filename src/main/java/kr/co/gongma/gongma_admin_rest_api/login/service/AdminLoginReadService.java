@@ -1,7 +1,6 @@
 package kr.co.gongma.gongma_admin_rest_api.login.service;
 
-import kr.co.gongma.gongma_admin_rest_api.exception.ApiException;
-import kr.co.gongma.gongma_admin_rest_api.exception.ErrorCode;
+import kr.co.gongma.gongma_admin_rest_api.exception.CustomException;
 import kr.co.gongma.gongma_admin_rest_api.login.dto.AdminLoginHistoryDto;
 import kr.co.gongma.gongma_admin_rest_api.login.entity.AdminLoginHistory;
 import kr.co.gongma.gongma_admin_rest_api.login.repository.AdminLoginHistoryRepository;
@@ -16,7 +15,7 @@ public class AdminLoginReadService {
 
     private final AdminLoginHistoryRepository adminLoginHistoryRepository;
 
-    public List<AdminLoginHistoryDto> getLoginHistory(Long adminId) throws ApiException {
+    public List<AdminLoginHistoryDto> getLoginHistory(Long adminId) throws CustomException {
         List<AdminLoginHistory> loginHistoryList = adminLoginHistoryRepository.findAllByAdminId(adminId);
 
         return loginHistoryList.stream().map(AdminLoginHistoryDto::fromEntity).toList();

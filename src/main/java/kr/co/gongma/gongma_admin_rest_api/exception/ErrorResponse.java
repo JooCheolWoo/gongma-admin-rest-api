@@ -6,7 +6,7 @@ import lombok.Getter;
 public class ErrorResponse {
     private final Object error;
 
-    public ErrorResponse(ApiException e) {
+    public ErrorResponse(CustomException e) {
         this.error = new ErrorInfo(e.getTitle(), e.getType(), e.getCode(), e.getMessage());
     }
 

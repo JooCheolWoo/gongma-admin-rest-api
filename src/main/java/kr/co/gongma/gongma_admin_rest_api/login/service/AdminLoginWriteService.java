@@ -7,7 +7,7 @@ import kr.co.gongma.gongma_admin_rest_api.admin.entity.Admin;
 import kr.co.gongma.gongma_admin_rest_api.login.entity.AdminLoginHistory;
 import kr.co.gongma.gongma_admin_rest_api.login.repository.AdminLoginHistoryRepository;
 import kr.co.gongma.gongma_admin_rest_api.admin.repository.AdminRepository;
-import kr.co.gongma.gongma_admin_rest_api.exception.ApiException;
+import kr.co.gongma.gongma_admin_rest_api.exception.CustomException;
 import kr.co.gongma.gongma_admin_rest_api.exception.ErrorCode;
 import kr.co.gongma.gongma_admin_rest_api.common.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,10 +20,10 @@ public class AdminLoginWriteService {
     private final AdminRepository adminRepository;
     private final AdminLoginHistoryRepository adminLoginHistoryRepository;
 
-    public AdminResponseDto login(AdminLoginDto request, HttpServletRequest httpServletRequest) throws ApiException {
+    public AdminResponseDto login(AdminLoginDto request, HttpServletRequest httpServletRequest) throws CustomException {
 
         Admin admin = adminRepository.findByEmail(request.email())
-                .orElseThrow(() -> new ApiException(ErrorCode.NOT_EXIST_EMAIL));
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_EXIST_EMAIL));
 
         AdminLoginHistory adminLoginHistory = AdminLoginHistory.builder()
                 .adminId(admin.getId())
