@@ -1,6 +1,7 @@
 package kr.co.gongma.gongma_admin_rest_api.admin.entity;
 
 import jakarta.persistence.*;
+import kr.co.gongma.gongma_admin_rest_api.common.code.StateCode;
 import lombok.*;
 import org.hibernate.annotations.Comment;
 import org.springframework.data.annotation.CreatedDate;
@@ -31,6 +32,10 @@ public class Admin {
     @Column(nullable = false, columnDefinition = "VARCHAR(150)")
     private String password;
 
+    @Comment("관리자 상태")
+    @Column(nullable = false, columnDefinition = "VARCHAR(20)")
+    private String State;
+
     @Comment("생성일")
     @Column(nullable = false, columnDefinition = "DATETIME")
     @CreatedDate
@@ -44,4 +49,8 @@ public class Admin {
     @Comment("탈퇴일")
     @Column(columnDefinition = "DATETIME")
     private LocalDateTime deletedAt;
+
+    public void updateState(StateCode stateCode) {
+        this.State = stateCode.getCode();
+    }
 }

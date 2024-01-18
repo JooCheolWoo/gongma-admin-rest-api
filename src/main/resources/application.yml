@@ -5,7 +5,7 @@ server:
 spring:
   # DB 설정
   datasource:
-    url: jdbc:mariadb://39.113.92.185:10401/gongma # 개발서버
+    url: jdbc:mariadb://${DB_URL} # 개발서버
     username: root
     password: root
     driver-class-name: org.mariadb.jdbc.Driver
